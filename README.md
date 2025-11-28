@@ -32,42 +32,45 @@ Add: netproto and pthread
 #define window_size 4  // Assume 7 frames of data are to be sent using Go-Back-N ARQ
 
 void main() {
+int i, window_start = 1, ack;
 
-    int i, window_start = 1, ack;
-    
-    int n;
+int n;
 
-    printf("SLIDING WINDOW PROTOCOL\n");
-    scanf("%d", &n);
-    printf("GO BACK N ARQ\n");
-    printf("Enter the number of frames: %d\n", n);
+printf("SLIDING WINDOW PROTOCOL\n");
+scanf("%d", &n);
+printf("GO BACK N ARQ\n");
+printf("Enter the number of frames: %d\n", n);
 
-    char frame[n + 1][10];
+char frame[n + 1][10];
 
-    for (i = 1; i <= n; i++) {
-        printf("Content for frame %d: ", i);
-        scanf("%s", frame[i]);
-    }
-
-    while (window_start <= n) {
-        printf("\nSending frames:\n");
-        scanf("%d", &ack);
-        printf("Enter frame number with no ACKs: %d\n", ack);
-
-        if (ack == 0) {
-            printf("No ACK received, moving window forward\n");
-            window_start += window_size;
-        } else {
-            printf("No Acknowledgement for frame %d...\n", ack);
-            printf("Resending frames starting from frame %d\n", ack);
-            window_start = ack;
-        }
-    }
-
-    printf("\nAll frames sent successfully.\n");
+for (i = 1; i <= n; i++) {
+    printf("Content for frame %d: ", i);
+    scanf("%s", frame[i]);
 }
+
+while (window_start <= n) {
+    printf("\nSending frames:\n");
+    scanf("%d", &ack);
+    printf("Enter frame number with no ACKs: %d\n", ack);
+
+    if (ack == 0) {
+        printf("No ACK received, moving window forward\n");
+        window_start += window_size;
+    } else {
+        printf("No Acknowledgement for frame %d...\n", ack);
+        printf("Resending frames starting from frame %d\n", ack);
+        window_start = ack;
+    }
+}
+
+printf("\nAll frames sent successfully.\n");
+
+}
+
 🖥️ Sample Output
-<img width="1210" height="984" alt="code block 1" src="https://github.com/user-attachments/assets/e8e4b6d8-7bb3-454e-8e02-6349c08a432a" />
+
+<img width="1481" height="756" alt="image" src="https://github.com/user-attachments/assets/ca6acc4d-da98-4149-8a78-dc18ac4c24ee" />
+
 
 ✅ Result
 
